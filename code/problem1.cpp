@@ -38,8 +38,7 @@ void DArray::push_back(int s){
     delete[] arr;
     arr=ptr;
     }
-    dynamicCopy(arr);
-    arr[Size-1]=s;
+    arr[Size]=s;
     Size++;
 }
 int DArray::getlen()const{

@@ -2,7 +2,22 @@
 #include"problem2.h"
 using namespace std;
 DArray & DArray::operator=(const DArray& d){
+    if (this==&d) {
+        return *this;
+    }
+    delete[] arr;
+    Size = d.Size;
+    Capacity = d.Capacity;
+    if (Capacity > 0) {
+        arr = new int[Capacity];
+        for (int i = 0; i < Size; i++) {
+            arr[i] = d.arr[i];
+        }
+    } else {
+        arr = nullptr;
+    }
 
+    return *this;
 }
 DArray::DArray(){
     arr=nullptr;
@@ -12,6 +27,7 @@ DArray::DArray(){
 void DArray::push_back(int s){
     if(Capacity==0){
         Capacity=1;
+        arr = new int[Capacity];
     }
     else if(Size==Capacity){
         Capacity*=2;
@@ -22,24 +38,18 @@ void DArray::push_back(int s){
         delete[] arr;
         arr=ptr;
     }
-    dynamicCopy(arr);
+
     arr[Size-1]=s;
     Size++;
 }
-void DArray::dynamicCopy(const int * ar )const{
 
-}
-int DArray::getlen()const{
-    return Size;
-}
 int DArray::getarr(int i)const{
-
     return *(arr+i);
 
 }
 
 DArray & DArray::operator+=(int n) {
-    
+    //
     return *this;
 }
 int DArray::size()const {
@@ -56,7 +66,7 @@ DArray::~DArray(){
     delete[] arr;
 }
 ostream & operator<<(ostream & os,const DArray & d){
-    for(int i=0;i<d.getlen();i++){
+    for(int i=0;i<d.size();i++){
         os << d.getarr(i) << " ";
     }
     return os;
