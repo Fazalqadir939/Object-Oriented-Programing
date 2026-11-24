@@ -1,0 +1,9 @@
+*.exe
+*.obj
+*.o
+*.dll
+*.pdb
+
+cmake-build-*/
+.idea/workspace.xml
+.vs/
